@@ -69,7 +69,10 @@ export interface ClientEvent extends EventUtilities {
     playerId: PlayerId;
     message: string;
   };
-
+  [GameEventIdentifiers.RequestObserveEvent]: {
+    observerId: PlayerId;
+    requestObservedPlayerId?: PlayerId;
+  };
   [GameEventIdentifiers.GameStartEvent]: {
     currentPlayer: PlayerInfo;
     otherPlayers: PlayerInfo[];

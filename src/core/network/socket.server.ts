@@ -30,6 +30,7 @@ export class ServerSocket extends Socket<WorkPlace.Server> {
 
   private playerReconnectTimer: { [K in string]: NodeJS.Timer } = {};
   private mapSocketIdToPlayerId: { [K in string]: string } = {};
+  private observerIdMaps: { [K in PlayerId]: PlayerId } = {};
   private lastResponsiveEvent:
     | {
         to: PlayerId;
@@ -76,6 +77,13 @@ export class ServerSocket extends Socket<WorkPlace.Server> {
                 socket,
                 identifier,
                 content as ClientEventFinder<GameEventIdentifiers.PlayerStatusEvent>,
+              );
+              break;
+            case GameEventIdentifiers.RequestObserveEvent:
+              this.onPlayerObserving(
+                socket,
+                identifier,
+                content as ClientEventFinder<GameEventIdentifiers.RequestObserveEvent>,
               );
               break;
             default:
@@ -226,6 +234,25 @@ export class ServerSocket extends Socket<WorkPlace.Server> {
       content.ignoreNotifiedStatus = true;
       this.broadcast(identifier, (content as unknown) as ServerEventFinder<GameEventIdentifiers.UserMessageEvent>);
     }
+  }
+
+  private async onPlayerObserving(
+    socket: IOSocketServer.Socket,
+    identifier: GameEventIdentifiers.RequestObserveEvent,
+    content: ClientEventFinder<GameEventIdentifiers.RequestObserveEvent>,
+  ) {
+    const { observerId, requestObservedPlayerId } = content;
+    if (!this.room || !this.room.isPlaying()) {
+      socket.emit(GameEventIdentifiers.RequestObserveEvent.toString(), content);
+      return;
+    }
+
+    this.observerIdMaps[observerId] = this.room!.AlivePlayers[0].Id;
+
+    socket.emit(GameEventIdentifiers.RequestObserveEvent.toString(), {
+      observerId,
+      requestObservedPlayerId: this.observerIdMaps[observerId],
+    });
   }
 
   private async onPlayerStatusChanged(
