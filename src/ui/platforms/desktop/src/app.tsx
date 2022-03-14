@@ -8,6 +8,7 @@ import { getImageLoader } from 'image_loader/image_loader_util';
 import * as mobxReact from 'mobx-react';
 import { CharactersList } from 'pages/characters_list/characters_list';
 import { OpenningPage } from 'pages/openning/openning';
+import { ObserveRoomPage } from 'pages/room/observe_room';
 import { ReplayRoomPage } from 'pages/room/replay_room';
 import { RoomPage } from 'pages/room/room';
 import { ClientConfig, ClientFlavor } from 'props/config_props';
@@ -95,6 +96,23 @@ export class App extends React.PureComponent<{
             path={'/replay'}
             render={({ match, location, history }) => (
               <ReplayRoomPage
+                location={location}
+                history={history}
+                match={match}
+                skinData={this.skinData}
+                imageLoader={this.imageLoader}
+                audioLoader={this.audioLoader}
+                electronLoader={this.props.electronLoader}
+                config={this.props.config}
+                translator={this.props.translator}
+                connectionService={this.fakeConnectionService}
+              />
+            )}
+          />
+          <Route
+            path={'/observe'}
+            render={({ match, location, history }) => (
+              <ObserveRoomPage
                 location={location}
                 history={history}
                 match={match}

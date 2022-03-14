@@ -247,6 +247,7 @@ export class ServerSocket extends Socket<WorkPlace.Server> {
       return;
     }
 
+    this.mapSocketIdToPlayerId[observerId] = socket.id;
     this.observerIdMaps[observerId] = this.room!.AlivePlayers[0].Id;
 
     socket.emit(GameEventIdentifiers.RequestObserveEvent.toString(), {
@@ -399,6 +400,13 @@ export class ServerSocket extends Socket<WorkPlace.Server> {
     } else {
       this.room?.setAwaitingResponseEvent(type, content, to);
       this.socket.to(this.mapSocketIdToPlayerId[to]).emit(type.toString(), content);
+
+      const observerMap = Object.entries(this.observerIdMaps).find(
+        ([observer, observedPlayer]) => observedPlayer === to,
+      );
+      observerMap &&
+        this.mapSocketIdToPlayerId[observerMap[0]] &&
+        this.socket.to(this.mapSocketIdToPlayerId[observerMap[0]]).emit(type.toString(), content);
     }
   }
 
