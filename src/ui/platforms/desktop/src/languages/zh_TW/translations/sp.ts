@@ -176,10 +176,10 @@ export const characterDictionary: Word[] = [
 ];
 
 export const skillDescriptions: Word[] = [
-
   {
     source: 'zhaolie_description',
-    target: '摸牌階段你可以少摸一張牌並選擇攻擊範圍內一名角色：你亮出牌頂三張牌並棄置其中非基本牌和【桃】，然後其選擇一項：1.受到X點傷害，獲得其余牌；2依次棄置X張牌，你獲得其余牌。（X為其中非基本牌數）。',
+    target:
+      '摸牌階段你可以少摸一張牌並選擇攻擊範圍內一名角色：你亮出牌頂三張牌並棄置其中非基本牌和【桃】，然後其選擇一項：1.受到X點傷害，獲得其余牌；2依次棄置X張牌，你獲得其余牌。（X為其中非基本牌數）。',
   },
 
   {

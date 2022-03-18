@@ -1,4 +1,5 @@
-import { CardMoveArea, CardMoveReason, EventPacker, GameEventIdentifiers, ServerEventFinder } from 'core/event/event';
+import { CardMoveArea, CardMoveReason, GameEventIdentifiers, ServerEventFinder } from 'core/event/event';
+import { EventPacker } from 'core/event/event_packer';
 import { AllStage, PhaseChangeStage, PlayerPhase } from 'core/game/stage_processor';
 import { Player } from 'core/player/player';
 import { PlayerCardsArea } from 'core/player/player_props';
@@ -71,13 +72,14 @@ export class QieTing extends TriggerSkill {
       response.selectedOption = response.selectedOption || askForChooseEvent.options[0];
 
       if (response.selectedOption === askForChooseEvent.options[0]) {
-        const askForChooseCardEvent =
-          EventPacker.createUncancellableEvent<GameEventIdentifiers.AskForChoosingCardEvent>({
-            toId: fromId,
-            cardIds: canMoveCards,
-            amount: 1,
-            customTitle: 'qieting: please move one of these cards to you',
-          });
+        const askForChooseCardEvent = EventPacker.createUncancellableEvent<
+          GameEventIdentifiers.AskForChoosingCardEvent
+        >({
+          toId: fromId,
+          cardIds: canMoveCards,
+          amount: 1,
+          customTitle: 'qieting: please move one of these cards to you',
+        });
 
         const response = await room.doAskForCommonly<GameEventIdentifiers.AskForChoosingCardEvent>(
           GameEventIdentifiers.AskForChoosingCardEvent,

@@ -29,10 +29,7 @@ export abstract class GameProcessor {
     Precondition.assert(this.room !== undefined, 'Game is not started yet');
   }
 
-  protected abstract chooseCharacters(
-    playersInfo: PlayerInfo[],
-    selectableCharacters: Character[],
-  ): Promise<void>;
+  protected abstract chooseCharacters(playersInfo: PlayerInfo[], selectableCharacters: Character[]): Promise<void>;
 
   protected abstract iterateEachStage<T extends GameEventIdentifiers>(
     identifier: T,

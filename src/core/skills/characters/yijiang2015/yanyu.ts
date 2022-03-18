@@ -1,6 +1,7 @@
 import { CardId } from 'core/cards/libs/card_props';
 import { CharacterGender } from 'core/characters/character';
-import { CardMoveReason, EventPacker, GameEventIdentifiers, ServerEventFinder } from 'core/event/event';
+import { CardMoveReason, GameEventIdentifiers, ServerEventFinder } from 'core/event/event';
+import { EventPacker } from 'core/event/event_packer';
 import { Sanguosha } from 'core/game/engine';
 import { AllStage, PhaseStageChangeStage, PlayerPhaseStages } from 'core/game/stage_processor';
 import { Player } from 'core/player/player';
@@ -80,9 +81,8 @@ export class YanYuShadow extends TriggerSkill {
         'phase',
       ).reduce<number>((sum, event) => {
         if (event.infos.length === 1) {
-          sum += event.infos[0].movingCards.filter(
-            card => Sanguosha.getCardById(card.card).GeneralName === 'slash',
-          ).length;
+          sum += event.infos[0].movingCards.filter(card => Sanguosha.getCardById(card.card).GeneralName === 'slash')
+            .length;
         } else if (event.infos.length > 1) {
           const infos = event.infos.filter(
             info =>
