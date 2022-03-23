@@ -9,11 +9,11 @@ import {
   CardMovedBySpecifiedReason,
   CardMoveReason,
   ClientEventFinder,
-  EventPacker,
   GameEventIdentifiers,
   ServerEventFinder,
 } from 'core/event/event';
 import { MoveCardEventInfos, MovingCardProps } from 'core/event/event.server';
+import { EventPacker } from 'core/event/event_packer';
 import { Sanguosha } from 'core/game/engine';
 import {
   CardEffectStage,
@@ -1917,7 +1917,7 @@ export class StandardGameProcessor extends GameProcessor {
     }
 
     const to = this.room.getPlayerById(toId);
-    const outsideAreaName = to.getOutsideAreaNameOf(judgeCardId)
+    const outsideAreaName = to.getOutsideAreaNameOf(judgeCardId);
     if (outsideAreaName && !to.isCharacterOutsideArea(outsideAreaName)) {
       fromArea = CardMoveArea.OutsideArea;
       ownerId = toId;

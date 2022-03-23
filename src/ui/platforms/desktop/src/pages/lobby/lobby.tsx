@@ -3,6 +3,7 @@ import { AudioLoader } from 'audio_loader/audio_loader';
 import classNames from 'classnames';
 import { Sanguosha } from 'core/game/engine';
 import { GameCardExtensions } from 'core/game/game_props';
+import { TemporaryRoomCreationInfo } from 'core/game/game_props';
 import { RoomInfo } from 'core/shares/types/server_types';
 import { TranslationPack } from 'core/translations/translation_json_tool';
 import { ClientTranslationModule } from 'core/translations/translation_module.client';
@@ -27,7 +28,7 @@ import styles from './lobby.module.css';
 import { AcknowledgeDialog } from './ui/acknowledge_dialog/acknowledge_dialog';
 import { Chat } from './ui/chat/chat';
 import { CreateRoomButton } from './ui/create_room_button/create_room_button';
-import { CreateRoomDialog, TemporaryRoomCreationInfo } from './ui/create_room_dialog/create_room_dialog';
+import { CreateRoomDialog } from './ui/create_room_dialog/create_room_dialog';
 import { EnterPasscodeDialog } from './ui/enter_passcode_dialog/enter_passcode_dialog';
 import { FeedbackDialog } from './ui/feedback_dialog/feedback_dialog';
 
@@ -152,45 +153,52 @@ export class Lobby extends React.Component<LobbyProps> {
 
   @mobx.computed
   get RoomListTable() {
-    return !this.unmatchedCoreVersion && this.roomList.map((hostInfo, index) => (
-      <li className={styles.roomInfo} key={index}>
-        <span className={styles.roomName}>
-          <span>{hostInfo.info.name}</span>
-        </span>
-        <span
-          className={styles.roomMode}
-          onMouseEnter={this.viewGameCharaterExtensions(index)}
-          onMouseLeave={this.closeGameCharaterExtensions}
-        >
-          <img
-            className={styles.gameModeIcon}
-            src={this.props.imageLoader.getGameModeIcon(hostInfo.info.gameMode).src}
-            alt=""
-          />
-          {this.viewCharacterExtenstions === index && (
-            <Tooltip position={['slightBottom', 'right']}>
-              {hostInfo.info.packages.map(p => this.props.translator.tr(p)).join(', ')}
-            </Tooltip>
-          )}
-        </span>
-        <span className={styles.roomStatus}>{this.props.translator.tr(hostInfo.info.status)}</span>
-        <span className={styles.roomPlayers}>{`${hostInfo.info.activePlayers}/${hostInfo.info.totalPlayers}`}</span>
-        <span className={styles.roomLocker}>{hostInfo.info.passcode && <img src={lockerImage} alt="" />}</span>
-        <span className={styles.roomActions}>
-          <LinkButton
-            onClick={this.enterRoom(hostInfo)}
-            disabled={
-              hostInfo.info.activePlayers === hostInfo.info.totalPlayers ||
-              !this.username ||
-              hostInfo.info.status === 'playing'
-            }
+    return (
+      !this.unmatchedCoreVersion &&
+      this.roomList.map((hostInfo, index) => (
+        <li className={styles.roomInfo} key={index}>
+          <span className={styles.roomName}>
+            <span>{hostInfo.info.name}</span>
+          </span>
+          <span
+            className={styles.roomMode}
+            onMouseEnter={this.viewGameCharaterExtensions(index)}
+            onMouseLeave={this.closeGameCharaterExtensions}
           >
-            {this.props.translator.tr('Join')}
-          </LinkButton>
-        </span>
-        <SignalBar host={hostInfo.host} className={styles.signalBar} connectionService={this.props.connectionService} />
-      </li>
-    ));
+            <img
+              className={styles.gameModeIcon}
+              src={this.props.imageLoader.getGameModeIcon(hostInfo.info.gameMode).src}
+              alt=""
+            />
+            {this.viewCharacterExtenstions === index && (
+              <Tooltip position={['slightBottom', 'right']}>
+                {hostInfo.info.packages.map(p => this.props.translator.tr(p)).join(', ')}
+              </Tooltip>
+            )}
+          </span>
+          <span className={styles.roomStatus}>{this.props.translator.tr(hostInfo.info.status)}</span>
+          <span className={styles.roomPlayers}>{`${hostInfo.info.activePlayers}/${hostInfo.info.totalPlayers}`}</span>
+          <span className={styles.roomLocker}>{hostInfo.info.passcode && <img src={lockerImage} alt="" />}</span>
+          <span className={styles.roomActions}>
+            <LinkButton
+              onClick={this.enterRoom(hostInfo)}
+              disabled={
+                hostInfo.info.activePlayers === hostInfo.info.totalPlayers ||
+                !this.username ||
+                hostInfo.info.status === 'playing'
+              }
+            >
+              {this.props.translator.tr('Join')}
+            </LinkButton>
+          </span>
+          <SignalBar
+            host={hostInfo.host}
+            className={styles.signalBar}
+            connectionService={this.props.connectionService}
+          />
+        </li>
+      ))
+    );
   }
 
   private createRoom(roomInfo: TemporaryRoomCreationInfo) {

@@ -56,8 +56,7 @@ export const skillDescriptions: Word[] = [
   },
   {
     source: 'pve_longlie_description',
-    target:
-      '<b>鎖定技</b>，你使用【殺】不能被響應；遊戲人數大於2時，此【殺】傷害+1',
+    target: '<b>鎖定技</b>，你使用【殺】不能被響應；遊戲人數大於2時，此【殺】傷害+1',
   },
   {
     source: 'pve_qinlv_description',
@@ -80,13 +79,11 @@ export const skillDescriptions: Word[] = [
   },
   {
     source: 'pve_lige_description',
-    target:
-      '<b>鎖定技</b>，一名其他角色結束階段開始時，其交給你一張牌或令你摸兩張牌，選擇後視為對其使用【決鬥】',
+    target: '<b>鎖定技</b>，一名其他角色結束階段開始時，其交給你一張牌或令你摸兩張牌，選擇後視為對其使用【決鬥】',
   },
   {
     source: 'pve_bibao_description',
-    target:
-      '<b>鎖定技</b>，你造成或受到傷害時，你回復1點體力且此傷害+1，你摸等同傷害+1張牌。',
+    target: '<b>鎖定技</b>，你造成或受到傷害時，你回復1點體力且此傷害+1，你摸等同傷害+1張牌。',
   },
   {
     source: 'pve_tansuo_description',
@@ -134,4 +131,4 @@ export const eventDictionary: Word[] = [
   { source: 'pve-hard-mode', target: '高難度' },
   { source: '{0} ouyujiguan', target: '{0} 偶遇了機關' },
   { source: '{0} qiyubaowu', target: '{0} 奇遇寶物' },
-]
+];

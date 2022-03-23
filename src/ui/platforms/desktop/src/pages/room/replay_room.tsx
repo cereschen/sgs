@@ -1,5 +1,6 @@
 import { AudioLoader } from 'audio_loader/audio_loader';
-import { EventPacker, GameEventIdentifiers, ServerEventFinder } from 'core/event/event';
+import { GameEventIdentifiers, ServerEventFinder } from 'core/event/event';
+import { EventPacker } from 'core/event/event_packer';
 import { ClientOfflineSocket } from 'core/network/socket.offline';
 import { PlayerInfo } from 'core/player/player_props';
 import { TranslationPack } from 'core/translations/translation_json_tool';

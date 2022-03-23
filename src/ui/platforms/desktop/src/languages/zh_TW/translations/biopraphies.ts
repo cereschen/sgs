@@ -92,8 +92,7 @@ export const skillDescriptions: Word[] = [
   },
   {
     source: 'suiren_description',
-    target:
-      '當你死亡時，你可以將你手牌中所有的【殺】和傷害類錦囊牌交給一名其他角色。',
+    target: '當你死亡時，你可以將你手牌中所有的【殺】和傷害類錦囊牌交給一名其他角色。',
   },
 ];
 
@@ -122,7 +121,7 @@ export const skillAudios: Word[] = [
   {
     source: '$pingjian:2',
     target: '月旦雅評，試論天下。',
-  }, 
+  },
 
   {
     source: '$minsi:1',
@@ -147,7 +146,7 @@ export const skillAudios: Word[] = [
   {
     source: '$zhuide:2',
     target: '花香蝶戀，君德妾慕。',
-  }, 
+  },
 
   {
     source: '$cixiao:1',
@@ -191,7 +190,7 @@ export const skillAudios: Word[] = [
     source: '$fuzhong:2',
     target: '勇冠其軍，負重前行！',
   },
-  
+
   {
     source: '$koulve:1',
     target: '兵強馬壯，時出寇略！',

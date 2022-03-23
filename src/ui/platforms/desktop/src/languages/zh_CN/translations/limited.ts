@@ -136,11 +136,13 @@ export const skillDescriptions: Word[] = [
 
   {
     source: 'qirang_description',
-    target: '当装备牌进入你的装备区后，你可以从牌堆随机获得一张锦囊牌。若此牌为普通锦囊牌，你于本回合使用此牌指定唯一目标时，你可以为此牌增加一个额外的目标。',
+    target:
+      '当装备牌进入你的装备区后，你可以从牌堆随机获得一张锦囊牌。若此牌为普通锦囊牌，你于本回合使用此牌指定唯一目标时，你可以为此牌增加一个额外的目标。',
   },
   {
     source: 'yuhua_description',
-    target: '<b>锁定技</b>，你的非基本牌不计入手牌上限；结束阶段开始时，若你的手牌数大于体力上限，你观看牌堆顶一张牌，然后将之置于牌堆顶或牌堆底。',
+    target:
+      '<b>锁定技</b>，你的非基本牌不计入手牌上限；结束阶段开始时，若你的手牌数大于体力上限，你观看牌堆顶一张牌，然后将之置于牌堆顶或牌堆底。',
   },
 
   {
@@ -230,7 +232,7 @@ export const skillAudios: Word[] = [
   {
     source: '$songci:2',
     target: '汝窃国奸贼，人人得而诛之！',
-  }, 
+  },
 
   {
     source: '$shanjia:1',
@@ -325,7 +327,7 @@ export const skillAudios: Word[] = [
   {
     source: '$qirang:2',
     target: '仙甲既来，岂无仙术乎？',
-  }, 
+  },
   {
     source: '$yuhua:1',
     target: '凤羽飞烟，乘化仙尘。',
@@ -342,7 +344,7 @@ export const skillAudios: Word[] = [
   {
     source: '$wuniang:2',
     target: '剑舞轻影，杀场克敌。',
-  }, 
+  },
   {
     source: '$xushen:1',
     target: '救命之恩，涌泉相报。',

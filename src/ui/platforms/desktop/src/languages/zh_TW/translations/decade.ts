@@ -327,7 +327,7 @@ export const skillAudios: Word[] = [
   {
     source: '$tanbei:2',
     target: '你的東西，現在是我的了！',
-  }, 
+  },
   {
     source: '$sidao:1',
     target: '連發伺動，順手可得。',
@@ -353,7 +353,7 @@ export const skillAudios: Word[] = [
   {
     source: '$lveming:2',
     target: '人財，皆掠之。嘿嘿！',
-  }, 
+  },
   {
     source: '$tunjun:1',
     target: '得封侯爵，屯軍弘農。',

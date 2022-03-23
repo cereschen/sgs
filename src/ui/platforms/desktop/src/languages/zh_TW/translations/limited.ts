@@ -136,11 +136,13 @@ export const skillDescriptions: Word[] = [
 
   {
     source: 'qirang_description',
-    target: '當裝備牌進入你的裝備區後，你可以從牌堆隨機獲得一張錦囊牌。若此牌爲普通錦囊牌，你於本回合使用此牌指定唯一目標時，你可以爲此牌增加一個額外的目標。',
+    target:
+      '當裝備牌進入你的裝備區後，你可以從牌堆隨機獲得一張錦囊牌。若此牌爲普通錦囊牌，你於本回合使用此牌指定唯一目標時，你可以爲此牌增加一個額外的目標。',
   },
   {
     source: 'yuhua_description',
-    target: '<b>鎖定技</b>，你的非基本牌不計入手牌上限；結束階段開始時，若你的手牌數大於體力上限，你觀看牌堆頂一張牌，然後將之置於牌堆頂或牌堆底。',
+    target:
+      '<b>鎖定技</b>，你的非基本牌不計入手牌上限；結束階段開始時，若你的手牌數大於體力上限，你觀看牌堆頂一張牌，然後將之置於牌堆頂或牌堆底。',
   },
 
   {
@@ -230,7 +232,7 @@ export const skillAudios: Word[] = [
   {
     source: '$songci:2',
     target: '汝竊國奸賊，人人得而誅之！',
-  }, 
+  },
 
   {
     source: '$shanjia:1',
@@ -325,7 +327,7 @@ export const skillAudios: Word[] = [
   {
     source: '$qirang:2',
     target: '仙甲既來，豈無仙術乎？',
-  }, 
+  },
   {
     source: '$yuhua:1',
     target: '鳳羽飛煙，乘化仙塵。',
@@ -342,7 +344,7 @@ export const skillAudios: Word[] = [
   {
     source: '$wuniang:2',
     target: '劍舞輕影，殺場克敵。',
-  }, 
+  },
   {
     source: '$xushen:1',
     target: '救命之恩，湧泉相報。',

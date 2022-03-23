@@ -33,7 +33,7 @@ export class ClientRoom extends Room<WorkPlace.Client> {
     players: ClientPlayer[],
     protected analytics: RecordAnalytics,
     protected gameCommonRules: GameCommonRules,
-    protected eventStack: RoomEventStacker<WorkPlace.Client>
+    protected eventStack: RoomEventStacker<WorkPlace.Client>,
   ) {
     super();
 
@@ -295,7 +295,12 @@ export class ClientRoom extends Room<WorkPlace.Client> {
     return this.currentPlayerStage;
   }
 
-  public async obtainSkill(playerId: PlayerId, skillName: string, broadcast?: boolean, insertIndex?: number): Promise<void> {
+  public async obtainSkill(
+    playerId: PlayerId,
+    skillName: string,
+    broadcast?: boolean,
+    insertIndex?: number,
+  ): Promise<void> {
     const player = this.getPlayerById(playerId);
     player.obtainSkill(skillName, insertIndex);
     await SkillLifeCycle.executeHookOnObtainingSkill(Sanguosha.getSkillBySkillName(skillName), this, player);
