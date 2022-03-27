@@ -308,6 +308,7 @@ export const enum WaitingRoomEvent {
   PlayerReady = 'PlayerReady',
   PlayerUnready = 'PlayerUnready',
   GameStart = 'GameStart',
+  RoomCreated = 'RoomCreated',
 }
 
 export const waitingRoomEventsList = [
@@ -320,6 +321,7 @@ export const waitingRoomEventsList = [
   WaitingRoomEvent.PlayerUnready,
   WaitingRoomEvent.GameStart,
   WaitingRoomEvent.PlayerChatMessage,
+  WaitingRoomEvent.RoomCreated,
 ];
 
 export type WaitingRoomEventUtilities<Event extends object = object> = Record<WaitingRoomEvent, Event>;
@@ -336,4 +338,5 @@ export const clientActiveWaitingRoomListeningEvents = [
   WaitingRoomEvent.PlayerUnready,
   WaitingRoomEvent.SeatDisabled,
   WaitingRoomEvent.SeatEnabled,
+  WaitingRoomEvent.RoomCreated,
 ];
