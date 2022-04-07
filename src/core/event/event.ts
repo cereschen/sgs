@@ -303,6 +303,7 @@ export const enum WaitingRoomEvent {
   SeatEnabled = 'SeatEnabled',
   PlayerChatMessage = 'PlayerChatMessage',
   GameInfoUpdate = 'GameInfoUpdate',
+  RoomCreated = 'RoomCreated',
   PlayerEnter = 'PlayerEnter',
   PlayerLeave = 'PlayerLeave',
   PlayerReady = 'PlayerReady',
@@ -314,6 +315,7 @@ export const enum WaitingRoomEvent {
 export const waitingRoomEventsList = [
   WaitingRoomEvent.SeatDisabled,
   WaitingRoomEvent.SeatEnabled,
+  WaitingRoomEvent.RoomCreated,
   WaitingRoomEvent.GameInfoUpdate,
   WaitingRoomEvent.PlayerEnter,
   WaitingRoomEvent.PlayerLeave,
@@ -332,6 +334,7 @@ export const clientActiveWaitingRoomListeningEvents = [
   WaitingRoomEvent.GameInfoUpdate,
   WaitingRoomEvent.GameStart,
   WaitingRoomEvent.PlayerChatMessage,
+  WaitingRoomEvent.RoomCreated,
   WaitingRoomEvent.PlayerEnter,
   WaitingRoomEvent.PlayerLeave,
   WaitingRoomEvent.PlayerReady,
