@@ -309,7 +309,6 @@ export const enum WaitingRoomEvent {
   PlayerReady = 'PlayerReady',
   PlayerUnready = 'PlayerUnready',
   GameStart = 'GameStart',
-  RoomCreated = 'RoomCreated',
 }
 
 export const waitingRoomEventsList = [
