@@ -54,6 +54,7 @@ function getGameCharacterExtensions(translator: ClientTranslationModule) {
 }
 
 export const CreateRoomDialog = (props: {
+  playerName: string;
   translator: ClientTranslationModule;
   onSubmit(data: TemporaryRoomCreationInfo): void;
   onCancel(): void;
@@ -62,7 +63,7 @@ export const CreateRoomDialog = (props: {
 }) => {
   const username: string = props.electronLoader.getData('username');
   const [numberOfPlayers, setNumberOfPlayers] = React.useState<number>(2);
-  const [checkedGameMode, setcheckedGameMode] = React.useState<GameMode | undefined>(GameMode.Pve);
+  const [checkedGameMode, setcheckedGameMode] = React.useState<GameMode>(GameMode.Pve);
   const [characterExtensions, setCharacterExtensions] = React.useState<GameCharacterExtensions[]>(
     Sanguosha.getGameCharacterExtensions(),
   );
@@ -76,7 +77,13 @@ export const CreateRoomDialog = (props: {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const isCampaignMode = checkedGameMode === GameMode.Pve && numberOfPlayers === 2;
+
+    if (!props.electronLoader.getTemporaryData('playerId')) {
+      props.electronLoader.saveTemporaryData('playerId', `${props.playerName}-${Date.now()}`);
+    }
+
     props.onSubmit({
+      hostPlayerId: props.electronLoader.getTemporaryData('playerId')!,
       numberOfPlayers,
       roomName,
       gameMode: checkedGameMode!,
@@ -84,6 +91,7 @@ export const CreateRoomDialog = (props: {
       characterExtensions,
       campaignMode: isCampaignMode,
       coreVersion: Sanguosha.Version,
+      cardExtensions: Sanguosha.getCardExtensionsFromGameMode(checkedGameMode),
     });
   };
 
@@ -116,7 +124,7 @@ export const CreateRoomDialog = (props: {
 
   const onGameModeChecked = (checkedIds: GameMode[]) => {
     if (checkedIds.length === 0) {
-      setcheckedGameMode(undefined);
+      setcheckedGameMode(GameMode.Pve);
     } else {
       setcheckedGameMode(checkedIds[0]);
     }
