@@ -1,11 +1,10 @@
 import { CardMoveReason, EventPacker, GameEventIdentifiers, ServerEventFinder } from 'core/event/event';
 import { VirtualCard } from 'core/cards/card';
-import { CardColor, CardId, CardSuit } from 'core/cards/libs/card_props';
+import { CardId, CardSuit } from 'core/cards/libs/card_props';
 import { Slash } from 'core/cards/standard/slash';
 import { Sanguosha } from 'core/game/engine';
 import {
   AllStage,
-  DamageEffectStage,
   JudgeEffectStage,
   PhaseStageChangeStage,
   PlayerPhaseStages,
@@ -31,7 +30,6 @@ import { PveClassicTianXiang } from './pve_classic_tianxiang';
 import { TargetGroupUtil } from 'core/shares/libs/utils/target_group';
 import { ExtralCardSkillProperty } from 'core/skills/cards/interface/extral_property';
 import { PveClassicLianZhen } from './pve_classic_lianzhen';
-import { DamageType } from 'core/game/game_props';
 
 @AwakeningSkill({ name: 'pve_classic_guyong', description: 'pve_classic_guyong_description' })
 export class PveClassicGuYong extends TriggerSkill {
