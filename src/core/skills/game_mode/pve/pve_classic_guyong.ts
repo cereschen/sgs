@@ -380,7 +380,7 @@ export class PveClassicGuYongWuQu extends TriggerSkill {
 
 @ShadowSkill
 @CommonSkill({ name: PveClassicGuYongWuQu.Name, description: PveClassicGuYongWuQu.Description })
-export class PveClassicGuYongBufPoJun extends TriggerSkill {
+export class PveClassicGuYongPoJun extends TriggerSkill {
   isTriggerable(event: ServerEventFinder<GameEventIdentifiers.AimEvent>, stage?: AllStage) {
     return stage === AimStage.AfterAimmed && event.byCardId !== undefined;
   }
@@ -390,7 +390,7 @@ export class PveClassicGuYongBufPoJun extends TriggerSkill {
   }
 
   getSkillLog() {
-    return TranslationPack.translationJsonPatcher('you can drop a card to then draw a card').extract();
+    return TranslationPack.translationJsonPatcher('{0}: you can drop a card then draw a card', this.Name).extract();
   }
 
   cardFilter(room: Room, owner: Player, cards: CardId[]) {
