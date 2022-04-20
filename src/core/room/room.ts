@@ -42,6 +42,7 @@ export abstract class Room<T extends WorkPlace = WorkPlace> {
   protected abstract readonly socket: Socket<T>;
   protected abstract readonly gameInfo: GameInfo;
   protected abstract readonly players: Player[];
+  protected readonly observers: { name: string; id: PlayerId }[] = [];
   protected abstract readonly roomId: RoomId;
   protected abstract readonly gameMode: GameMode;
   protected circle: number = 0;
@@ -388,6 +389,11 @@ export abstract class Room<T extends WorkPlace = WorkPlace> {
   public addPlayer(player: Player) {
     this.players.push(player);
     return this.players;
+  }
+
+  public addObserver(observerName: string, observerId: string) {
+    this.observers.push({ name: observerName, id: observerId });
+    return this.observers;
   }
 
   public removePlayer(playerId: PlayerId) {
