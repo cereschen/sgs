@@ -324,6 +324,43 @@ export class PveClassicGuYongWenQu extends TriggerSkill {
 @ShadowSkill
 @CommonSkill({ name: PveClassicGuYongWenQu.Name, description: PveClassicGuYongWenQu.Description })
 export class PveClassicGuYongWuQu extends TriggerSkill {
+  isTriggerable(event: ServerEventFinder<GameEventIdentifiers.AimEvent>, stage?: AllStage) {
+    return stage === AimStage.AfterAimmed && event.byCardId !== undefined;
+  }
+
+  canUse(room: Room, owner: Player, event: ServerEventFinder<GameEventIdentifiers.AimEvent>) {
+    return owner.getMark(MarkEnum.PvePoJun) > 0 && event.toId === owner.Id && event.fromId !== owner.Id;
+  }
+
+  getSkillLog() {
+    return TranslationPack.translationJsonPatcher('{0}: you can drop a card then draw a card', this.Name).extract();
+  }
+
+  cardFilter(room: Room, owner: Player, cards: CardId[]) {
+    return cards.length === 1;
+  }
+
+  isAvailableCard(owner: PlayerId, room: Room, cardId: CardId) {
+    return room.canDropCard(owner, cardId);
+  }
+
+  async onTrigger() {
+    return true;
+  }
+
+  async onEffect(room: Room, event: ServerEventFinder<GameEventIdentifiers.SkillUseEvent>) {
+    if (event.cardIds !== undefined && event.cardIds.length === 1) {
+      await room.dropCards(CardMoveReason.SelfDrop, event.cardIds, event.fromId);
+      const { toId } = event.triggeredOnEvent as ServerEventFinder<GameEventIdentifiers.AimEvent>;
+      await room.drawCards(1, toId, 'top', toId, this.Name);
+    }
+    return true;
+  }
+}
+
+@ShadowSkill
+@CommonSkill({ name: PveClassicGuYongWuQu.Name, description: PveClassicGuYongWuQu.Description })
+export class PveClassicGuYongPoJun extends TriggerSkill {
   isTriggerable(event: ServerEventFinder<GameEventIdentifiers.PhaseStageChangeEvent>, stage?: AllStage) {
     return stage === PhaseStageChangeStage.StageChanged;
   }
@@ -374,43 +411,6 @@ export class PveClassicGuYongWuQu extends TriggerSkill {
       await room.useCard(slashUseEvent);
     }
 
-    return true;
-  }
-}
-
-@ShadowSkill
-@CommonSkill({ name: PveClassicGuYongWuQu.Name, description: PveClassicGuYongWuQu.Description })
-export class PveClassicGuYongPoJun extends TriggerSkill {
-  isTriggerable(event: ServerEventFinder<GameEventIdentifiers.AimEvent>, stage?: AllStage) {
-    return stage === AimStage.AfterAimmed && event.byCardId !== undefined;
-  }
-
-  canUse(room: Room, owner: Player, event: ServerEventFinder<GameEventIdentifiers.AimEvent>) {
-    return owner.getMark(MarkEnum.PvePoJun) > 0 && event.toId === owner.Id && event.fromId !== owner.Id;
-  }
-
-  getSkillLog() {
-    return TranslationPack.translationJsonPatcher('{0}: you can drop a card then draw a card', this.Name).extract();
-  }
-
-  cardFilter(room: Room, owner: Player, cards: CardId[]) {
-    return cards.length === 1;
-  }
-
-  isAvailableCard(owner: PlayerId, room: Room, cardId: CardId) {
-    return room.canDropCard(owner, cardId);
-  }
-
-  async onTrigger() {
-    return true;
-  }
-
-  async onEffect(room: Room, event: ServerEventFinder<GameEventIdentifiers.SkillUseEvent>) {
-    if (event.cardIds !== undefined && event.cardIds.length === 1) {
-      await room.dropCards(CardMoveReason.SelfDrop, event.cardIds, event.fromId);
-      const { toId } = event.triggeredOnEvent as ServerEventFinder<GameEventIdentifiers.AimEvent>;
-      await room.drawCards(1, toId, 'top', toId, this.Name);
-    }
     return true;
   }
 }
