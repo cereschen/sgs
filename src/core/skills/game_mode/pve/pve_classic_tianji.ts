@@ -34,7 +34,8 @@ export class PveClassicTianJi extends TriggerSkill {
 
   getSkillLog() {
     return TranslationPack.translationJsonPatcher(
-      'you can drop a card to deal 1 thunder damage to current player?',
+      '{0}: you can drop a card to deal 1 thunder damage to current player?',
+      this.Name,
     ).extract();
   }
 
