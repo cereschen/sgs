@@ -34,6 +34,13 @@ export class AskForPeachAction extends ResponsiveUseCardAction<GameEventIdentifi
     return true;
   };
 
+  isOutsideCardShowOnSkillTriggered(card: Card) {
+    if (this.isCardFromParticularArea(card)) {
+      return true;
+    }
+    return false;
+  }
+
   isCardEnabledOnAskingForPeach(card: Card, fromArea: PlayerCardsArea) {
     for (const skill of this.player.getSkills<FilterSkill>('filter')) {
       if (!skill.canUseCard(card.Id, this.store.room, this.playerId)) {
@@ -66,7 +73,7 @@ export class AskForPeachAction extends ResponsiveUseCardAction<GameEventIdentifi
             this.selectedTargets,
             this.equipSkillCardId,
           ) &&
-          this.isCardEnabledInArea(skill, card, fromArea) &&
+          skill.availableCardAreas().includes(fromArea) &&
           (!skill.cardFilter(
             this.store.room,
             this.player,
@@ -92,7 +99,7 @@ export class AskForPeachAction extends ResponsiveUseCardAction<GameEventIdentifi
             this.equipSkillCardId,
             this.matcher,
           ) &&
-          this.isCardEnabledInArea(skill, card, fromArea) &&
+          skill.availableCardAreas().includes(fromArea) &&
           (!skill.cardFilter(
             this.store.room,
             this.player,
@@ -168,6 +175,9 @@ export class AskForPeachAction extends ResponsiveUseCardAction<GameEventIdentifi
       );
       this.presenter.setupClientPlayerOutsideCardActionsMatcher((card: Card) =>
         this.isCardEnabledOnAskingForPeach(card, PlayerCardsArea.OutsideArea),
+      );
+      this.presenter.setupclientPlayerOutsideCardShowMatcher((card: Card) =>
+        this.isOutsideCardShowOnSkillTriggered(card),
       );
       this.presenter.setupCardSkillSelectionMatcher((card: Card) =>
         this.isCardEnabledOnAskingForPeach(card, PlayerCardsArea.EquipArea),
