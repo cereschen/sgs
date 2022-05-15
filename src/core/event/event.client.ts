@@ -188,6 +188,10 @@ export interface ClientEvent extends EventUtilities {
   [GameEventIdentifiers.GameReadyEvent]: never;
   [GameEventIdentifiers.HookUpSkillsEvent]: never;
   [GameEventIdentifiers.UnhookSkillsEvent]: never;
+  [GameEventIdentifiers.ChangeInitialCardEvent]: {
+    fromId: PlayerId;
+    cardIds?: CardId[];
+  };
 }
 
 type PlayCardOrSkillEvent =

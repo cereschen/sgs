@@ -494,6 +494,9 @@ export interface ServerEvent extends EventUtilities {
     toId: PlayerId;
     skillNames: string[];
   };
+  [GameEventIdentifiers.ChangeInitialCardEvent]: {
+    toIds: PlayerId[];
+  };
 }
 
 export type PinDianProcedure = {
