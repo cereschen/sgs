@@ -232,6 +232,7 @@ export const serverResponsiveListenerEvents = [
   GameEventIdentifiers.AskForSkillUseEvent,
   GameEventIdentifiers.AskForPlaceCardsInDileEvent,
   GameEventIdentifiers.AskForContinuouslyChoosingCardEvent,
+  GameEventIdentifiers.ChangeInitialCardEvent,
 ];
 
 export const enum CardMovedBySpecifiedReason {
