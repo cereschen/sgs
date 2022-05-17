@@ -98,7 +98,7 @@ export const enum GameEventIdentifiers {
   UnhookSkillsEvent,
 
   RequestObserveEvent,
-  ChangeInitialCardEvent,
+  AskForChangeInitCardEvent,
 }
 
 export type CardResponsiveEventIdentifiers =
@@ -201,7 +201,7 @@ export const clientActiveListenerEvents = () => [
   GameEventIdentifiers.AbortOrResumePlayerSectionsEvent,
   GameEventIdentifiers.AbortOrResumePlayerJudgeAreaEvent,
   GameEventIdentifiers.RefreshOnceSkillEvent,
-  GameEventIdentifiers.ChangeInitialCardEvent,
+  GameEventIdentifiers.AskForChangeInitCardEvent,
 ];
 
 export const serverActiveListenerEvents = [
@@ -232,7 +232,7 @@ export const serverResponsiveListenerEvents = [
   GameEventIdentifiers.AskForSkillUseEvent,
   GameEventIdentifiers.AskForPlaceCardsInDileEvent,
   GameEventIdentifiers.AskForContinuouslyChoosingCardEvent,
-  GameEventIdentifiers.ChangeInitialCardEvent,
+  GameEventIdentifiers.AskForChangeInitCardEvent,
 ];
 
 export const enum CardMovedBySpecifiedReason {

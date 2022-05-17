@@ -494,7 +494,7 @@ export interface ServerEvent extends EventUtilities {
     toId: PlayerId;
     skillNames: string[];
   };
-  [GameEventIdentifiers.ChangeInitialCardEvent]: {
+  [GameEventIdentifiers.AskForChangeInitCardEvent]: {
     toId: PlayerId;
   };
 }
